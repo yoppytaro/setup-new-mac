@@ -19,9 +19,11 @@ aws --version
 aws configure
 rm AWSCLIV2.pkg
 
+# isntall nvm
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.4/install.sh | bash
+
 echo "Installing other brew stuff..."
 brew install git
-brew install nvm
 
 # github
 printf "Githubのメールアドレスを入力してください。"
@@ -30,9 +32,8 @@ printf "Githubのユーザー名を入力してください。"
 read -r username
 echo "Creating an Github SSH key for you..."
 mkdir ~/.ssh
-cd ~/.ssh
-ssh-keygen -t ed25519 -C "$email" -f github
-chmod 600 github
+ssh-keygen -t ed25519 -C "$email" -f ~/.ssh/github
+chmod 600 ~/.ssh/github
 
 echo "
 Host github github.com
@@ -47,6 +48,9 @@ echo "https://github.com/account/ssh \n"
 read -p "Press [Enter] key after this..."
 
 ssh -T git@github.com
+
+git config --global user.name "$username"
+git config --global user.email "$email"
 
 
 # Apps
@@ -83,9 +87,9 @@ echo "Setting some Mac settings..."
 # - Dockの表示アプリ
 # - 起動時に起動するアプリ
 
+source ~/.zshrc
 
 killall Finder
-
 rm setup.sh
 
 echo "Done!"

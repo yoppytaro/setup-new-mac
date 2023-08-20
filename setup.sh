@@ -16,6 +16,7 @@ sudo softwareupdate --install-rosetta
 curl "https://awscli.amazonaws.com/AWSCLIV2.pkg" -o "AWSCLIV2.pkg"
 sudo installer -pkg AWSCLIV2.pkg -target /
 aws --version
+aws configure
 rm AWSCLIV2.pkg
 
 echo "Installing other brew stuff..."
